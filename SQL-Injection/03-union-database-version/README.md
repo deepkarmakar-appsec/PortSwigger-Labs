@@ -88,7 +88,7 @@ This confirms that the backend database is **Oracle**.
 
 ---
 
-##  Mitigation / Fix
+## 🔒 Mitigation / Fix
 
 ### Use Prepared Statements
 
@@ -109,7 +109,7 @@ Avoid constructing raw SQL queries with user input.
 
 ---
 
-##  Tools Used
+## 🧰 Tools Used
 
 * Burp Suite
 * Firefox
@@ -117,24 +117,7 @@ Avoid constructing raw SQL queries with user input.
 
 ---
 
-##  References
+## 📚 References
 
 * OWASP Top 10 – SQL Injection
 * PortSwigger Web Security Academy
-
----
-
-## 📂 Repository Structure Example
-
-```
-portswigger-labs-writeups
-│
-├── SQL Injection
-│   ├── database-version
-│   ├── login-bypass
-│   └── union-attack
-│
-├── XSS
-├── SSRF
-└── CSRF
-```
