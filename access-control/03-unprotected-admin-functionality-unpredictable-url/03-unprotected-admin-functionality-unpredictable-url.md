@@ -1,60 +1,48 @@
-## 🧪 Lab: Unprotected Admin Functionality with Unpredictable URL
+## Lab: User Role Controlled by Request Parameter
 
-Platform: PortSwigger Web Security Academy  
-Category: Access Control  
-Level: Apprentice  
-
----
-
-## 📌 Lab Description
-
-This lab has an admin panel at a hidden/unpredictable URL.  
-Goal is to find the admin panel and delete user "carlos".
+### Vulnerability
+Broken Access Control
 
 ---
 
-## 🔍 Vulnerability
+### Steps to Solve
 
-Broken Access Control  
+1. Login using:
+   wiener:peter
 
-Admin panel is only hidden (not protected). No proper server-side check.
+2. Intercept the request in Burp Suite and check the cookies  
 
----
+   Found:
+   Admin=false
 
-## 🔎 Steps to Solve
+3. Modify the cookie:
+   Admin=true
 
-1. Page source / JS files check karo  
-2. Hidden URL mila:
-   /admin-54edq0  
+4. Open:
+   /admin  
 
-3. Direct open karo:
-   /admin-54edq0  
+   Admin panel is now accessible
 
-4. Admin panel access ho jayega  
-
-5. User delete karo:
-   /admin-54edq0/delete?username=carlos  
-
----
-
-## ✅ Result
-
-User "carlos" delete ho gaya aur lab solve ho gaya
+5. Delete the user:
+   /admin/delete?username=carlos  
 
 ---
 
-## ⚠️ Impact
+### Result
+User "carlos" was deleted and the lab was solved.
 
-- Unauthorized admin access  
-- Users delete/modify ho sakte hain  
+---
+
+### Impact
+- Normal user can become admin  
+- Users can be deleted or modified  
 - Full system compromise possible  
 
 ---
 
-## 🔐 Fix
-
-- Server-side access control lagao  
-- Hidden URL pe trust mat karo  
+### Fix
+- Implement server-side role checks  
+- Do not trust client-side data (cookies)
 
 Example:
 if ($user->role !== 'admin') {
